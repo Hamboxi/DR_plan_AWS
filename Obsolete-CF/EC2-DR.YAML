@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Criacao de primeira VM teste
+
+Parameters: #Validar adição de novos parametros
+  vmName:
+    Description: "Nome da VM"
+    Type: String
+
+  vmRegion:
+    Description: "Região da VM"
+    Type: String
+    Default: "us-east-1"
+
+  vmSize:
+    Description: "Tamanho da VM"
+    Type: String
+    Default: "t2micro"
+
+  vmSG:
+    Description: "Security Group da VM"
+    Type: String
+
+  vmImageId:
+    Description: "ID da imagem personalizada"
+    Type: String
+
+Resources:
+  InstanciaEC2:
+    Type: AWS::EC2::Instance
+    Properties:
+      KeyName: !Ref vmName
+      DisableApiTermination: false
+      ImageId: !Ref vmImageId
+      InstanceType: !Ref vmSize
+      Monitoring: false
+      SecurityGroupIds: 
+      - !Ref vmSG
+      UserData:
+        Fn::Base64: !Sub #Se necessário instalar algum pacote
+
+      Tags:
+        - Key: Funcao
+          Value: Producao
+        - Key: Name
+          Value: !Ref vmName
+
+  MyBackupSelection:
+    Type: AWS::Backup::BackupSelection
+    Properties:
+      BackupPlanId: 51b5a424-27fa-4491-b46d-429fa00475aa #ID do backup
+      BackupSelection:
+        IamRoleArn: !Sub arn:aws:iam::${AWS::AccountId}:role/aws-service-role/backup.amazonaws.com/AWSServiceRoleForBackup
+        SelectionName: MyBackupSelection
+        Resources:
+          - !Sub arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:instance/${InstanciaEC2}
+
+Outputs:
+  InstanceId:
+    Description: ID da instancia EC2 criada
+    Value: !Ref InstanciaEC2

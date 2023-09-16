@@ -1,0 +1,26 @@
+-----------------------------------------------------------------------------
+Region: us-east-1
+StackName: tCaT-vpcsg-default-c3abee45f2fb4e88b9b8cfea184fd5b2
+*****************************************************************************
+ResourceStatusReason:  
+The following resource(s) failed to create: [SGS, SubS].
+*****************************************************************************
+*****************************************************************************
+Events:  
+TimeStamp                         ResourceStatus      ResourceType                LogicalResourceId                                    ResourceStatusReason
+--------------------------------  ------------------  --------------------------  ---------------------------------------------------  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2023-09-09 03:32:23.857000+00:00  CREATE_FAILED       AWS::CloudFormation::Stack  tCaT-vpcsg-default-c3abee45f2fb4e88b9b8cfea184fd5b2  The following resource(s) failed to create: [SGS, SubS].
+2023-09-09 03:32:23.125000+00:00  CREATE_FAILED       AWS::EC2::SecurityGroup     SGS                                                  Invalid value for portRange. Must specify both from and to ports with TCP/UDP. (Service: AmazonEC2; Status Code: 400; Error Code: InvalidParameterValue; Request ID: 8fec3e2f-2358-4ede-a315-e828674d0bdc; Proxy: null)
+2023-09-09 03:32:22.241000+00:00  CREATE_IN_PROGRESS  AWS::EC2::SecurityGroup     SGS                                                  Resource creation Initiated
+2023-09-09 03:32:18.011000+00:00  CREATE_FAILED       AWS::EC2::Subnet            SubS                                                 Resource handler returned message: "Invalid request provided: Property Ipv6CidrBlock cannot be empty." (RequestToken: ed9b2a61-c91c-5d7e-2345-7554604e2836, HandlerErrorCode: InvalidRequest)
+2023-09-09 03:32:17.061000+00:00  CREATE_IN_PROGRESS  AWS::EC2::SecurityGroup     SGS
+2023-09-09 03:32:17.028000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Subnet            SubS
+2023-09-09 03:32:16.493000+00:00  CREATE_COMPLETE     AWS::EC2::VPC               VPCS
+2023-09-09 03:32:05.472000+00:00  CREATE_IN_PROGRESS  AWS::EC2::VPC               VPCS                                                 Resource creation Initiated
+2023-09-09 03:32:04.055000+00:00  CREATE_IN_PROGRESS  AWS::EC2::VPC               VPCS
+2023-09-09 03:32:01.447000+00:00  CREATE_IN_PROGRESS  AWS::CloudFormation::Stack  tCaT-vpcsg-default-c3abee45f2fb4e88b9b8cfea184fd5b2  User Initiated
+*****************************************************************************
+-----------------------------------------------------------------------------
+Tested on: Saturday, 09. September 2023 03:33AM
+-----------------------------------------------------------------------------
+

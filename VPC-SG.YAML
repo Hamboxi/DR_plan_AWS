@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Criacao de VPC e SG em nova regiao
+  
+Resources:
+  VPCS:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: "10.0.0.0/24"
+      EnableDnsHostnames: false
+      EnableDnsSupport: false
+      Tags: 
+        - Key : Tipo
+          Value : AWS Backup - Recuperados
+
+  SubS:
+    Type: AWS::EC2::Subnet
+    Properties:
+      CidrBlock: 10.0.0.0/25
+      MapPublicIpOnLaunch: false
+      Tags: 
+        - Key : Tipo
+          Value : AWS Backup - Recuperados
+      VpcId: !Ref VPCS
+
+  SGS:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Grupo Default" # Required
+      GroupName: "SG1-Recovery"
+      SecurityGroupEgress: []
+      SecurityGroupIngress: 
+        - CidrIp: 0.0.0.0/0
+          Description: SSH
+          FromPort: 22
+          IpProtocol: tcp
+          ToPort: 22
+      Tags: 
+        - Key : Tipo
+          Value : AWS Backup - Recuperados
+      VpcId: !Ref VPCS
+  
+Outputs:
+  VPC:
+    Value: !Ref VPCS
+  SG:
+    Value: !Ref SGS

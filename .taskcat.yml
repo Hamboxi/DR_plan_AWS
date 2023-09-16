@@ -1,0 +1,8 @@
+project:
+  name: vpcsg
+  regions:
+    - us-east-1
+tests:
+  default:
+    template: ./VPC-SG.YAML
+    #parameters:

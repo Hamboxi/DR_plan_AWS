@@ -1,0 +1,27 @@
+-----------------------------------------------------------------------------
+Region: us-east-1
+StackName: tCaT-vpcsg-default-580105e871e241cdb3f5b034004b0fae
+*****************************************************************************
+ResourceStatusReason:  
+Stack launch was successful
+*****************************************************************************
+*****************************************************************************
+Events:  
+TimeStamp                         ResourceStatus      ResourceType                LogicalResourceId                                    ResourceStatusReason
+--------------------------------  ------------------  --------------------------  ---------------------------------------------------  ---------------------------
+2023-09-09 03:59:40.959000+00:00  CREATE_COMPLETE     AWS::CloudFormation::Stack  tCaT-vpcsg-default-580105e871e241cdb3f5b034004b0fae
+2023-09-09 03:59:39.918000+00:00  CREATE_COMPLETE     AWS::EC2::SecurityGroup     SGS
+2023-09-09 03:59:39.009000+00:00  CREATE_IN_PROGRESS  AWS::EC2::SecurityGroup     SGS                                                  Resource creation Initiated
+2023-09-09 03:59:37.826000+00:00  CREATE_COMPLETE     AWS::EC2::Subnet            SubS
+2023-09-09 03:59:35.151000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Subnet            SubS                                                 Resource creation Initiated
+2023-09-09 03:59:34.011000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Subnet            SubS
+2023-09-09 03:59:33.969000+00:00  CREATE_IN_PROGRESS  AWS::EC2::SecurityGroup     SGS
+2023-09-09 03:59:33.494000+00:00  CREATE_COMPLETE     AWS::EC2::VPC               VPCS
+2023-09-09 03:59:22.575000+00:00  CREATE_IN_PROGRESS  AWS::EC2::VPC               VPCS                                                 Resource creation Initiated
+2023-09-09 03:59:21.230000+00:00  CREATE_IN_PROGRESS  AWS::EC2::VPC               VPCS
+2023-09-09 03:59:19.112000+00:00  CREATE_IN_PROGRESS  AWS::CloudFormation::Stack  tCaT-vpcsg-default-580105e871e241cdb3f5b034004b0fae  User Initiated
+*****************************************************************************
+-----------------------------------------------------------------------------
+Tested on: Saturday, 09. September 2023 04:00AM
+-----------------------------------------------------------------------------
+

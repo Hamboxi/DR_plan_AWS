@@ -1,8 +1,13 @@
 import boto3
 import pandas as pd
+import datetime
+
+now = datetime.datetime.now()
+
+formatted_date_time = now.strftime("%Y-%m-%d %H:%M:%S")
 
 #ALTERE O ID APÓS CADA EXECUÇÃO
-id="H"
+id="F"+formatted_date_time
 
 client = boto3.client('backup')
 clientec2 = boto3.client('ec2')
@@ -18,7 +23,7 @@ backup_vault_name = 'PROD01'
 
 backup_jobs = client.list_backup_jobs(
     ByBackupVaultName=backup_vault_name,
-    MaxResults=1000
+    MaxResults=1000 #QUANTIDADE DE SNAPSHOTS
 )
 
 #Filtrando os BackupJobs completos
@@ -68,19 +73,23 @@ i=1
 for index, row in df3.iterrows():
     pointarn = row['RecoveryPointArn']
     instancetype = row['InstanceType']
+    name = row['vmName']
 
     #print("RecoveryPointArn: "+ pointarn+" /InstanceType:"+instancetype)
 
     # Chamar a função start_restore_job
     response = client.start_restore_job(
         RecoveryPointArn=pointarn,
-        Metadata={
-            "Id": id+str(i),
+        Metadata=
+        {
+            "Id": id+"-"+str(i),
             "InstanceType": instancetype,
             "VpcId": "vpc-0c3a76d28ef14c101",
-            "GroupId": "sg-0c900dbc8a39d3296"
+            "GroupSet": "sg-0c900dbc8a39d3296",
+            "Name": name
         },
-        CopySourceTagsToRestoredResource=True,
-        IamRoleArn='arn:aws:iam::144471715188:role/ec2-backupRestore'
+        IamRoleArn="arn:aws:iam::144471715188:role/ec2-backupRestore",
+        CopySourceTagsToRestoredResource=True
     )
+    print("ID-"+name+": "+id+"-"+str(i))
     i = i+1

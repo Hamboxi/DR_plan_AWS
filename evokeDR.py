@@ -49,7 +49,7 @@ def lambda_handler(event, context):
             {
                 'Name': 'tag:Name',
                 'Values': dflist
-            }
+            },
             {
                 'Name': 'instance-state-name',
                 'Values': ['stopped']

@@ -1,5 +1,7 @@
 import boto3
 
+vaultName = "PROD01"
+
 def lambda_handler(event, context):
     client = boto3.client('cloudformation', region_name="us-east-1")
 
@@ -28,5 +30,18 @@ def lambda_handler(event, context):
     
     waiter = client.get_waiter('stack_create_complete')
     waiter.wait(StackName='VPC-RG-Recovery')
+
+    stack_resources = client.describe_stack_resources(StackName='VPC-RG-Recovery')
+
+    for resource in stack_resources['StackResources']:
+        if resource['ResourceType'] == 'AWS::EC2::VPC':
+            VpcID = resource['PhysicalResourceId']
+
+        if resource['ResourceType'] == 'AWS::EC2::SecurityGroup':
+            GroupSet = resource['PhysicalResourceId']
     
-    return {"message": "A stack está pronta!"}
+    return {
+        "backup_vault_name": vaultName,
+        "VpcID": VpcID,
+        "GroupSet": GroupSet
+    }

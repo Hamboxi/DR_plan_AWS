@@ -3,6 +3,6 @@ Plano de recuperação automática de Data Center EC2 usando AWS Backup, Lambda 
 
 Plano geral:
 
-![Alt text](Images/Auto_Backup.git)
+![Alt text](Images/Auto_Backup.gif)
 
 ![Alt text](Images/image.png)
